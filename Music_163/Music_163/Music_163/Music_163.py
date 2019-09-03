@@ -66,6 +66,7 @@ class NetMusic(object):
         page=NetMusic.Page(url)
         NetMusic.Read(page)
         for i in range(3):
+            time.sleep(45)
             NetMusic.ReadData(headers,page)
         NetMusic.WriterFile()
 
