@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FreeProxy", "FreeProxy\FreeProxy.pyproj", "{11836F00-3CD4-4579-9D09-2B627D9D9231}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11836F00-3CD4-4579-9D09-2B627D9D9231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11836F00-3CD4-4579-9D09-2B627D9D9231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EA1E6D6-55D8-41A8-AF44-3E9E760559E9}
+	EndGlobalSection
+EndGlobal
