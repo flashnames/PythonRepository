@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Music_163", "Music_163\Music_163.pyproj", "{35F7ED82-DC84-4F03-B3DA-44C940B4433A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35F7ED82-DC84-4F03-B3DA-44C940B4433A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F7ED82-DC84-4F03-B3DA-44C940B4433A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20139FD9-128C-4B03-BA75-0E3C7B5E9683}
+	EndGlobalSection
+EndGlobal
