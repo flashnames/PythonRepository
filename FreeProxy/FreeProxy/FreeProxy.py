@@ -11,7 +11,6 @@ connect=[]
 city=[]
 checktime=[]
 j=0
-i=0
 class Proxy:
     def cookies():
         cookies={'cookie':'td_cookie=1905952385; _free_proxy_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJTRiOWQ3Njk1ZjdjMmI2MWNkODUzZTU0ZDRiMmY2NWMyBjsAVEkiEF9jc3JmX3Rva2VuBjsARkkiMVdMS0I2d21kWmVMbEYxTnhIdlZOS2RkUktUajIyZGJ5SUw4RU5LdDVOaEk9BjsARg%3D%3D--0fe2aba896c2046432c2d8aaf721483cc8d5e389; Hm_lvt_0cf76c77469e965d2957f0553e6ecf59=1565598137,1567647843; Hm_lpvt_0cf76c77469e965d2957f0553e6ecf59=1567647843'}
@@ -29,7 +28,6 @@ class Proxy:
         return page
     def GetIp(page):
         global j
-        global i
         for Html in page:
             GetMore=re.findall(More,Html,re.S)
             for Line in GetMore:
