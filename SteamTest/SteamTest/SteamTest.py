@@ -19,7 +19,7 @@ class Tools(object):
         url=requests.get(url="https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/",headers=headers,cookies=cookies)
         return url.text
     def page(url):
-        page=r'\');">(.+?)</div>'
+        page=r'\'^[);">](.+?)[</div>]$'
         page=re.findall(page,url,re.S)
         print(page)
         return page
@@ -28,12 +28,12 @@ class Tools(object):
                 f.write(url)
             f.close()
     def init():
-        #headers=Tools.headers()
-        #cookies=Tools.cookies()
-        #url=Tools.url(headers,cookies)
-        #Tools.page(url)
-        #Tools.WriterFile(url)
-        Proxy.Read()
+        headers=Tools.headers()
+        cookies=Tools.cookies()
+        url=Tools.url(headers,cookies)
+        Tools.page(url)
+        Tools.WriterFile(url)
+        #Proxy.Read()
 if  __name__=="__main__":
         Tools()
         Tools.init()
