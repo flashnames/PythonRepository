@@ -1,23 +1,23 @@
-
-import re
 import time
 from appium import webdriver
 import random
-import requests
-import os 
+import openpyxl
 
+
+wb=openpyxl.load_workbook("AppiumTestNeed.xlsx")
+ws=wb.active
 
 def dc_option():
         desire_caps={}
-        desire_caps['platformName']='Android'
-        desire_caps['playformVersion']='9'
-        desire_caps['deviceName']='0123456789ABCDEF'
-        desire_caps['automationName']='Appium'
-        desire_caps['appPackage']='com.android.launcher3'
-        desire_caps['appActivity']='com.android.launcher3.Launcher'
-        desire_caps['appWaitActivity']='com.android.launcher3.Launcher'
-        desire_caps['newCommandTimeout']=10000
-        desire_caps['resetKeyboard']=False
+        desire_caps['platformName']=ws["A2"].value
+        desire_caps['playformVersion']=ws["B2"].value
+        desire_caps['deviceName']=ws["C2"].value
+        desire_caps['automationName']=ws["D2"].value
+        desire_caps['appPackage']=ws["E2"].value
+        desire_caps['appActivity']=ws["F2"].value
+        desire_caps['appWaitActivity']=ws["G2"].value
+        desire_caps['newCommandTimeout']=ws["H2"].value
+        desire_caps['resetKeyboard']=ws["I2"].value
         return desire_caps
 
 WifiName=["EM-public","ASUS"]
