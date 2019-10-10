@@ -6,7 +6,6 @@ import random
 import requests
 import os 
 
-Video=[]
 
 def dc_option():
         desire_caps={}
@@ -28,55 +27,64 @@ driver=webdriver.Remote("http://localhost:4723/wd/hub",dc_option())
 #--------------------------------------Before Test-----------------------------------------------
 
 class Tools(object):
-    def get_size():
+    def get_size(self):
         x=driver.get_window_size()['width']
         y=driver.get_window_size()['height']
-        print((x,y))
         return(x,y)
 
-    def Swipe_Menu(size,time): #上拉菜单
+    def Swipe_Menu(self,size,time): #上拉菜单
+        self.size=size
+        self.time=time
         x_1=int(size[0]*0.2)
         x_2=int(size[0]*0.3)
         y_1=int(size[1]*0.75)
         y_2=int(size[1]*0.15)
         driver.swipe(x_1,y_1,x_2,y_2,time)
 
-    def Swipe_down(size,time):  #横屏下拉状态栏
+    def Swipe_down(self,size,time):  #横屏下拉状态栏
+        self.size=size
+        self.time=time
         x_1=int(size[0]*0.5)
         x_2=int(size[0]*0.55)
         y_1=int(size[1]*0.01)
         y_2=int(size[1]*0.4)
         driver.swipe(x_1,y_1,x_2,y_2,time)
 
-    def Swipe_down(size,time): #竖屏时的下拉状态栏
+    def Swipe_down(self,size,time): #竖屏时的下拉状态栏
+        self.size=size
+        self.time=time
         x_1=int(size[0]*0.9)
         x_2=int(size[0]*0.8)
         y_1=int(size[1]*0.01)
         y_2=int(size[1]*0.4)
         driver.swipe(x_1,y_1,x_2,y_2,time)
     
-    def Swpie_Up(size,time): #横屏时的上拉状态栏
+    def Swpie_Up(self,size,time): #横屏时的上拉状态栏
+        self.size=size
+        self.time=time
         x_1=int(size[0]*0.2)
         x_2=int(size[0]*0.3)
         y_1=int(size[1]*0.75)
         y_2=int(size[1]*0.15)
         driver.swipe(x_1,y_1,x_2,y_2,time)
-        print(y_1,y_2)
 
-    def Swipe_Up_1(size,time): #竖屏时的上拉状态栏 
+    def Swipe_Up_1(self,size,time): #竖屏时的上拉状态栏 
+        self.size=size
+        self.time=time
         x_1=int(size[0]*0.9)
         x_2=int(size[0]*0.8)
         y_1=int(size[1]*0.4)
         y_2=int(size[1]*0.01)
         driver.swipe(x_1,y_1,x_2,y_2,time)
 
-    def OpenGetPower():
+    def OpenGetPower(self):
+        self.size=size
         driver.find_element_by_accessibility_id("GetPower").click()
         driver.find_element_by_id('com.example.GetPower:id/getPower').click()
         driver.press_keycode(3)
 
 
-    def CloseWifi():
+    def CloseWifi(self):
         driver.find_element_by_xpath('//android.widget.Switch'
         +'[@content-desc="Wi-Fi,Wi-Fi '
         +WifiList[1]
@@ -86,27 +94,29 @@ class Tools(object):
         +'/android.widget.FrameLayout/android.view.ViewGroup/'
         +'android.widget.FrameLayout/android.widget.ImageView').click()
 
-    def OpenWifi():
+    def OpenWifi(self):
         size=Tools.get_size()
         Tools.Swipe_down(size,1000)
         time.sleep(2)
         driver.find_element_by_xpath('//android.widget.Switch[@content-desc="Wi-Fi,"]/'
         +'android.widget.FrameLayout/android.view.ViewGroup').click()
         
-    def CheckGetPower(size):
+    def CheckGetPower(self,size):
+        self.size=size
         Tools.swipe_top(size,1000)
         AppStatus=driver.is_app_installed("com.example.GetPower")
         if AppStatus:
             return
         else:
-            driver.install_app("https://raw.githubusercontent.com/flashnames/ApkRepository/master/GetPower.apk?token=ALIUASK3HON674SDBP42F5K5LO6PO")
+           driver.install_app("https://raw.githubusercontent.com/flashnames/ApkRepository/master/GetPower.apk?token=ALIUASK3HON674SDBP42F5K5LO6PO")
 #------------------------------Class Tools End------------------------------------------------------------
 
 #-------------------------Class Test Start---------------------------------------------------
 class Test(object):
     
 #--------------------------Tencent Video start------------------
-    def TententVideo(size):
+    def TententVideo(self,size):
+        self.size=size
         time.sleep(4)
         Tools.Swipe_Menu(size,1000)
         time.sleep(3)
@@ -115,8 +125,6 @@ class Test(object):
         driver.find_element_by_id('com.tencent.qqlive:id/a76').click()
         time.sleep(4)
         Video=driver.find_elements_by_id('com.tencent.qqlive:id/cg')
-        for i in range(13):
-            print(Video)
         time.sleep(3)
         driver.find_element_by_xpath('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.GridView/android.widget.RelativeLayout[1]/android.widget.TextView').click()
         time.sleep(110)
@@ -130,7 +138,8 @@ class Test(object):
         time.sleep(2)
         driver.press_keycode(4)
 
-    def OpenTencentVideo(size):
+    def OpenTencentVideo(self,size):
+        self.size=size
         time.sleep(3)
         Tools.Swipe_Menu(size,1000)
         try:
@@ -154,7 +163,8 @@ class Test(object):
         print("Tencent Video Test Finish")
 #---------------------Tencent Video End-------------------------------------------------------------
 #---------------------Open Game start-----------------------------
-    def OpenGame(size):
+    def OpenGame(self,size):
+        self.size=size
         Tools.Swipe_Menu(size,1000)
         driver.find_element_by_accessibility_id('NFS Most Wanted').click()
         time.sleep(10)
@@ -162,7 +172,8 @@ class Test(object):
         print("Game Test Finish")
 #---------------------Open Game End-----------------------------
 #---------------------OpenCamera start-------------------------
-    def record():
+    def record(self):
+        self.size=size
         time.sleep(4)
         driver.find_element_by_accessibility_id('Video').click()
         driver.find_element_by_accessibility_id('Video').click()
@@ -172,7 +183,8 @@ class Test(object):
         driver.press_keycode(3)
         return
 
-    def OpenCamera(size):
+    def OpenCamera(self,size):
+        self.size=size
         Tools.Swipe_Menu(size,1000)
         driver.find_element_by_accessibility_id('Camera').click()
         for i in range(3):
@@ -187,7 +199,8 @@ class Test(object):
         print("Camera Test Finish")
 #---------------------------OpenCamera end--------------------------
 #---------------------------OpenMusic start------------------------------
-    def OpenMusic(size):
+    def OpenMusic(self,size):
+        self.size=size
         Tools.Swipe_Menu(size,1000)
         driver.find_element_by_accessibility_id('Play Music').click()
         driver.find_element_by_id('Show navigation drawer').click()
@@ -210,7 +223,8 @@ class Test(object):
         print("Music Test Finish")
 #---------------------------OpenMusic End------------------------------   
 #---------------------------OpenBrowser start-----------------------------
-    def OpenBrowser(size):
+    def OpenBrowser(self,size):
+        self.size=size
         time.sleep(3)
         try:
             Tools.OpenWifi()
@@ -234,7 +248,8 @@ class Test(object):
         Tools.OpenGetPower()
         print("Browser Test Finish")
 #--------------------------OpenBrowser end--------------------------------
-    def OpenWeiBo(size):
+    def OpenWeiBo(self,size):
+        self.size=size
         time.sleep(3)
         Tools.Swipe_Menu(size,1000)
         time.sleep(3)
@@ -256,7 +271,8 @@ class Test(object):
         print("WeiBo Test Finish")
 #-------------------------OpenWeiBo end-------------------------------
 #-------------------------OpenWeChat start----------------------------
-    def OpenWeChat(size):
+    def OpenWeChat(self,size):
+        self.size=size
         Tools.Swipe_Menu(size,1000)
         driver.find_element_by_accessibility_id('WeChat').click()
         time.sleep(10)
@@ -281,7 +297,7 @@ class Test(object):
         print("WeChat Test Finish")
 #----------------------------OpenWeChat end-----------------------------
 #----------------------------All Test Should be in here to start------------------
-    def Test_init():
+    def Test_init(self):
         size=Tools.get_size()
         Test.OpenGame(size)
         Test.OpenMusic(size)
