@@ -1,6 +1,7 @@
 import requests
 import re
 import csv
+import time
 Tables=r'<li>(.+?)</li>'
 Listeners=r'<span class="nb">(.+?)</span>'
 Titles=r'class="tit f-thide s-fc0">(.+?)</a>'
@@ -20,7 +21,7 @@ class NetMusic(object):
         headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
         return headers
     def url(headers,cookies):
-        url=requests.get(url='https://music.163.com/discover/playlist',headers=headers,cookies=cookies)
+        url=requests.get(url='https://music.163.com/discover/playlist/?cat=民谣',headers=headers,cookies=cookies)
         return url.text
     def Page(url):
         Total=r'<ul class="m-cvrlst f-cb" id="m-pl-container">(.+?)</ul>'
@@ -43,17 +44,18 @@ class NetMusic(object):
                 GetLink=re.findall(Links,Line,re.S)
                 Link.insert(j,GetLink[0])
                 j+=1
+                print(j)
     def ReadData(headers,page):
         global num
         num+=35
         cookies=NetMusic.cookies()
-        url=requests.get(url='https://music.163.com/discover/playlist/?order=hot&cat=全部&limit=35&offset=%d'%num,headers=headers,cookies=cookies,)
+        url=requests.get(url='https://music.163.com/discover/playlist/?order=hot&cat=民谣&limit=35&offset=%d'%num,headers=headers,cookies=cookies,)
         page=NetMusic.Page(url.text)
         NetMusic.Read(page)
     def WriterFile():
             with open('C:\\Users\\admin\\Desktop\\PythonCode\\Music_163\\Music_163\\Music_163\Data.csv','w',newline='',encoding='utf_8_sig') as f:
                 writer = csv.writer(f)
-                writer.writerow(('收听人数', '拥有者', '标题','连接'))
+                writer.writerow(('播放次数', '歌单拥有者', '歌单标题','歌单连接'))
                 for Num in range(num):
                     writer.writerow((Listener[Num],UserName[Num],Title[Num],"https://music.163.com/playlist/"+Link[Num]))
                     print("第%d次写入"%Num)
@@ -77,4 +79,3 @@ if __name__=="__main__":
 
 
 
-#无法翻页

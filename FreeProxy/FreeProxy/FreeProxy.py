@@ -2,8 +2,10 @@ import re
 import requests
 import csv
 import time
+import pymysql
 More=r'<tr class="odd">(.+?)</tr>'
 Data=r'<td>(.+?)</td>'
+emoty=r'</td><td class="country">透明'
 data=[]
 port=[]
 survivaltime=[]
@@ -21,7 +23,6 @@ class Proxy:
     def Url(headers,cookies):
         url=requests.get("https://www.xicidaili.com/",headers=headers,cookies=cookies)
         return url.text
-
     def Page(url):
         page=r'<table id="ip_list">(.+?)</table>'
         page=re.findall(page,url,re.S)
@@ -35,11 +36,13 @@ class Proxy:
                if GetData:
                    data.insert(j,GetData[0])
                    port.insert(j,GetData[1])
-                   city.insert(j,GetData[2])
+                   if  GetData[2]!=:
+                       city.insert(j,GetData[2])
+                   else:
+                       city.insert(j," ")
                    connect.insert(j,GetData[3])
                    survivaltime.insert(j,GetData[4])
                    checktime.insert(j,GetData[5])
-                   time.sleep(45)
                    j+=1
                    print("第%d次"%j)
     def WriterFile():

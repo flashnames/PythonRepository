@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Douban", "Douban\Douban.pyproj", "{F291E7D8-AFA8-4784-9962-58EB2ED25591}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OpenBlueTooth", "OpenBlueTooth\OpenBlueTooth.pyproj", "{B2F6075E-8E4A-470A-AC55-7B47953820AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F291E7D8-AFA8-4784-9962-58EB2ED25591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F291E7D8-AFA8-4784-9962-58EB2ED25591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F6075E-8E4A-470A-AC55-7B47953820AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F6075E-8E4A-470A-AC55-7B47953820AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {42DDDABB-CFC0-465C-B2E6-BF69C0291F7E}
+		SolutionGuid = {11D07A21-A54A-48A7-A207-D710392AFB22}
 	EndGlobalSection
 EndGlobal

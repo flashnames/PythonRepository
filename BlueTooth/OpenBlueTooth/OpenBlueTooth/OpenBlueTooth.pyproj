@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>f291e7d8-afa8-4784-9962-58eb2ed25591</ProjectGuid>
+    <ProjectGuid>b2f6075e-8e4a-470a-ac55-7b47953820ad</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Douban.py</StartupFile>
+    <StartupFile>OpenBlueTooth.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Douban</Name>
-    <RootNamespace>Douban</RootNamespace>
+    <Name>OpenBlueTooth</Name>
+    <RootNamespace>OpenBlueTooth</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Douban.py" />
+    <Compile Include="OpenBlueTooth.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
