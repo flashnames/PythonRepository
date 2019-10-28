@@ -328,17 +328,14 @@ class Test(object):
         Tools().Swipe_Menu(size, 1000)
         driver.find_element_by_accessibility_id('WeChat').click()
         time.sleep(10)
-        driver.find_element_by_id('com.tencent.mm:id/qi').click()
-        driver.find_element_by_id(
-            'com.tencent.mm:id/li').send_keys('WeChat Team')
-        driver.find_element_by_id('com.tencent.mm:id/rd').click()
+        driver.find_element_by_id('com.tencent.mm:id/bai').click()
         driver.find_element_by_accessibility_id('Comments').click()
-        for i in range(3):
+        for i in range(0, 3):
             Rnum = random.randint(0, 29)
-            driver.find_element_by_id('com.tencent.mm:id/aom').clear()
+            driver.find_element_by_id('com.tencent.mm:id/aqc').clear()
             driver.find_element_by_id(
-                'com.tencent.mm:id/aom').send_keys('Message%d' % Rnum)
-            driver.find_element_by_id('com.tencent.mm:id/aot').click()
+                'com.tencent.mm:id/aqc').send_keys('Message%d' % Rnum)
+            driver.find_element_by_id('com.tencent.mm:id/aqj').click()
             time.sleep(60)
             i = i+1
             print(i)
@@ -356,12 +353,14 @@ class Test(object):
         size = Tools().get_size()
         # Test().OpenGame(size)
         # Test().OpenGoogleMusic(size)
-        Test().OpenNetEase(size)
+        # Test().OpenNetEase(size)
         # Test().OpenTencentVideo(size)
         # Test().OpenCamera(size)
         # Test().OpenBrowser(size)
         # Test().OpenWeiBo(size)
-        # Test().OpenWeChat(size)
+        Test().OpenWeChat(size)
+
+
 # -----------------------------------------------------------------------------------------
 # --------------------------Main Menu--------------------------------------
 if __name__ == "__main__":
