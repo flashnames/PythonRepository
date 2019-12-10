@@ -13,5 +13,7 @@ class Solution:
         self.x=x
         array.addend(x)
         for i in range(len(array)):
+            num=array[0]
+            if num==
             
 # @lc code=end

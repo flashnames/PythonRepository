@@ -2,10 +2,10 @@ import time
 from appium import webdriver
 import random
 import openpyxl
+import datetime
 
 
-wb = openpyxl.load_workbook(
-    "C:\\Users\\admin\\Desktop\\PythonCode\\Python+Appium_AutoTest\\DouTest\\AppiumTestNeed.xlsx")
+wb = openpyxl.load_workbook("AppiumTestNeed.xlsx")
 ws = wb.active
 
 
@@ -113,6 +113,9 @@ class Tools(object):
         time.sleep(2)
         driver.find_element_by_xpath('//android.widget.Switch[@content-desc="Wi-Fi,"]/'
                                      + 'android.widget.FrameLayout/android.view.ViewGroup').click()
+    def GetLocationTime(self):
+        dt=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        return dt
 
     def CheckGetPower(self, size):
         self.size = size
@@ -135,8 +138,9 @@ class Test(object):
         self.size = size
         time.sleep(4)
         Tools().Swipe_Menu(size, 1000)
-        time.sleep(3)
-        driver.find_element_by_accessibility_id('Tencent Video').click()
+        Tools().get_size()  #刷新appium所获取到的元素
+        el1 = driver.find_element_by_accessibility_id("Tencent Video")
+        el1.click()
         time.sleep(15)
         driver.find_element_by_id('com.tencent.qqlive:id/a76').click()
         time.sleep(4)
@@ -176,18 +180,20 @@ class Test(object):
         size = Tools().get_size()
         Tools().Swipe_Menu(size, 1000)  # 上拉屏幕
         time.sleep(2)
-        Tools().OpenGetPower()  # 获取电量
-        print("Tencent Video Test Finish")
+        #Tools().OpenGetPower()  # 获取电量
+        dt=Tools().GetLocationTime()
+        print('Tencent Video Test Finish Location time:'+dt)
 # ---------------------Tencent Video End-------------------------------------------------------------
 # ---------------------Open Game start-----------------------------
 
     def OpenGame(self, size):
         self.size = size
         Tools().Swipe_Menu(size, 1000)
-        driver.find_element_by_accessibility_id('NFS Most Wanted').click()
+        driver.find_element_by_accessibility_id('Hot Pursuit').click()
         time.sleep(10)
         driver.press_keycode(3)
-        print("Game Test Finish")
+        dt=Tools().GetLocationTime()
+        print('Game Test Finish Location time:'+dt)
 # ---------------------Open Game End-----------------------------
 # ---------------------OpenCamera start-------------------------
 
@@ -215,12 +221,13 @@ class Test(object):
         time.sleep(2)
         Tools().Swipe_Menu(size, 1000)
         time.sleep(2)
-        Tools().OpenGetPower()
-        print("Camera Test Finish")
+        #Tools().OpenGetPower()
+        dt=Tools().GetLocationTime()
+        print('Camera Test Finish Location time:'+dt)
 # ---------------------------OpenCamera end--------------------------
 # ---------------------------OpenMusic start---------------------------- --
 
-    def OpenNetEase(self, size):
+    '''def OpenNetEase(self, size):
         self.size = size
         Tools().Swipe_Menu(size, 1000)
         driver.find_element_by_accessibility_id('NetEase Music').click()
@@ -241,9 +248,12 @@ class Test(object):
         driver.press_keycode(3)
         time.sleep(3)
         Tools().Swipe_Menu(size, 1000)
-        Tools().OpenGetPower()
+        #Tools().OpenGetPower()
+        dt=Tools().GetLocationTime()
+        print('NetEaseCloudMusic Test Finish Location time:'+dt)''' 
 
- #  def OpenGoogleMusic(self,size):
+    def OpenGoogleMusic(self,size):
+        time.sleep(3)
         self.size = size
         Tools().Swipe_Menu(size, 1000)
         driver.find_element_by_accessibility_id('Play Music').click()
@@ -260,15 +270,17 @@ class Test(object):
         Tools().Swipe_Menu(size, 1000)
         Choose = driver.find_element_by_id(
             'com.google.android.music:id/li_play_button').text
-        if Choose == "Pause List Added":
-            driver.find_element_by_id(
-                'com.google.android.music:id/li_play_button').click()
+        if Choose == "Play Last added":   #暂停状态
+            pass
+        else: #正在播放状态
+            driver.find_element_by_id('com.google.android.music:id/li_play_button').click()
         time.sleep(3)
         driver.press_keycode(3)
         time.sleep(3)
         Tools().Swipe_Menu(size, 1000)
-        Tools().OpenGetPower()
-        print("Music Test Finish")
+        #Tools().OpenGetPower()
+        dt=Tools().GetLocationTime()
+        print('GoogleMusic Test Finish Location time:'+dt)
 # ---------------------------OpenMusic End------------------------------
 # ---------------------------OpenBrowser start-----------------------------
 
@@ -295,10 +307,19 @@ class Test(object):
         time.sleep(3)
         Tools().Swipe_Menu(size, 1000)
         time.sleep(3)
-        Tools().OpenGetPower()
-        print("Browser Test Finish")
+        #Tools().OpenGetPower()
+        dt=Tools().GetLocationTime()
+        print('Browser Test Finish Location time:'+dt)
 # --------------------------OpenBrowser end--------------------------------
-
+    def OpenBaiduMap(self,size):
+        self.size=size
+        Tools().Swipe_Menu(size,1000)
+        driver.find_element_by_accessibility_id('百度地图').click()
+        time.sleep(10)
+        driver.press_keycode(3)
+        dt=Tools().GetLocationTime()
+        print('BaiduMap Test Finish Location time:'+dt)
+#---------------------------OpenBaiduMap end-------------------------------
     def OpenWeiBo(self, size):
         self.size = size
         time.sleep(3)
@@ -318,8 +339,9 @@ class Test(object):
         time.sleep(10)
         Tools().Swipe_Menu(size, 1000)
         time.sleep(3)
-        Tools().OpenGetPower()
-        print("WeiBo Test Finish")
+        #Tools().OpenGetPower()
+        dt=Tools().GetLocationTime()
+        print('Weibo Test Finish Location time:'+dt)
 # -------------------------OpenWeiBo end-------------------------------
 # -------------------------OpenWeChat start----------------------------
 
@@ -342,22 +364,24 @@ class Test(object):
         driver.press_keycode(3)
         Tools().Swipe_Menu(size, 1000)
         time.sleep(2)
-        Tools().OpenGetPower()
+        #Tools().OpenGetPower()
         time.sleep(2)
         Tools().CloseWifi()
-        print("WeChat Test Finish")
+        dt=Tools().GetLocationTime()
+        print('Wechat Test Finish Location time:'+dt)
 # ----------------------------OpenWeChat end-----------------------------
 # ----------------------------All Test Should be in here to Run------------------
 
     def Test_init(self):
         size = Tools().get_size()
-        # Test().OpenGame(size)
-        # Test().OpenGoogleMusic(size)
-        # Test().OpenNetEase(size)
-        # Test().OpenTencentVideo(size)
-        # Test().OpenCamera(size)
-        # Test().OpenBrowser(size)
-        # Test().OpenWeiBo(size)
+        Test().OpenGame(size)
+        Test().OpenGoogleMusic(size)
+        #Test().OpenNetEase(size)
+        Test().OpenTencentVideo(size)
+        Test().OpenCamera(size)
+        Test().OpenBrowser(size)
+        Test().OpenBaiduMap(size)
+        Test().OpenWeiBo(size)
         Test().OpenWeChat(size)
 
 
@@ -367,5 +391,4 @@ if __name__ == "__main__":
     Test()
     Tools()
     time.sleep(3)
-    for i in range(13):
-        Test().Test_init()
+    Test().Test_init()

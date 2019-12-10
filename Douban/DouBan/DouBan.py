@@ -1,4 +1,4 @@
-import urllib.request
+import requests
 import re
 import json
 import csv
@@ -15,7 +15,9 @@ link = []
 CommentNumber = 0
 MaxNumber = 0
 Element = {}
-
+Settings={}
+Cookies={}
+headers={}
 
 class Douban(object):
     # 爬取豆瓣电影上海堡垒前六页最热门评论作者与影评信息
@@ -24,8 +26,10 @@ class Douban(object):
     # 获取网站地址(url)
 
     def Tools(self):
+        global Settings
         global Element
-        self.Element=Element
+        self.Element = Element
+        self.Settings=Settings
         # 获取header中的用户id、名字、时间、评分数据
         Element['Header'] = r'class="main-hd">(.+?)</header>'
         # 内层div匹配获取评论标题和链接数据
@@ -41,11 +45,20 @@ class Douban(object):
         # 获取用户id
         Element['UserId'] = r'people/(.+?)/" class="avator"'
 
-    def GetPage(self, CommentNumber):
+
+    def Cookies(self):
+        Cookies['cookie']=r'bid=FZmG0u5Abw8; ll="118282"; viewed="1236999"; gr_user_id=1526a73a-7cc6-4114-a6b1-a8d69b6e0494; __gads=ID=fc185450298c53cd:T=1572835664:S=ALNI_MatI2WugL6h5XVCzaF0wWXUhpu08A; _vwo_uuid_v2=D0C575F726774B7270361EEC5647245D7|39072f99e5a4263161f482b9460ff9dd; _pk_ref.100001.8cb4=%5B%22%22%2C%22%22%2C1574063579%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DO4awfBSluo534wW2qdt5qQkbIj9FcvAlWFD63MC5nKa%26wd%3D%26eqid%3Ddf5406ae000d664b000000065dd24dd5%22%5D; _pk_ses.100001.8cb4=*; _pk_id.100001.8cb4=b765489f3edb5f22.1569204015.5.1574063975.1571740613.; __utma=30149280.103470262.1569204016.1572835656.1574063976.6; __utmc=30149280; __utmz=30149280.1574063976.6.4.utmcsr=baidu|utmccn=(organic)|utmcmd=organic; __utmt=1; __utmb=30149280.1.10.1574063976; dbcl2="196614158:aWAsmT2EKaE"'
+        return Cookies
+    def Headers(self):
+        headers['User-Agent']=r'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'
+        return headers
+
+    def GetPage(self, CommentNumber,headers,cookies):
+        self.headers=headers
+        self.cookies=cookies
         url = "https://movie.douban.com/subject/26581837/reviews?start=%d" % self.CommentNumber
-        page = urllib.request.urlopen(url).read()
-        page = page.decode('utf8')
-        return page
+        page=requests.get(url,cookies=cookies,headers=headers)
+        return page.text
 
     # 获取最大页数
     def MaxPage(self, page):
@@ -61,11 +74,11 @@ class Douban(object):
         List['DivElement'] = re.findall(
             Div, page, re.S)  # 匹配div标签中的内容
         List['HeaderElement'] = re.findall(
-            Header,page, re.S)  # 匹配header标签中的内容
+            Header, page, re.S)  # 匹配header标签中的内容
         return List
 
     def GetUserName(self, Line, UserId, Date, Score, i):
-        GetUserId = re.findall(UserId,Line, re.S)
+        GetUserId = re.findall(UserId, Line, re.S)
         userid = GetUserId[0]
         # 先获取用户id
         # 再获取用户名字,发表时间,分数
@@ -89,11 +102,13 @@ class Douban(object):
 
     def init(self):
         global CommentNumber, MaxNumber
+        cookies=Douban().Cookies()
+        headers=Douban().Headers()
         Douban().Tools()
-        Page = Douban().GetPage(CommentNumber)
+        Page = Douban().GetPage(CommentNumber,headers,cookies)
         MaxNumber = Douban().MaxPage(Page)
         for index in range(MaxNumber):  # 外循环 用于控制翻页
-            Page = Douban().GetPage(CommentNumber)
+            Page = Douban().GetPage(CommentNumber,headers,cookies)
             List = Douban().GetData(
                 Page,
                 Element.get('Div'),
