@@ -7,9 +7,5 @@ def is_pangram(s):
             if Str>='A' and Str<='Z' or Str>='a' and Str<='z':
                 count+=1
             if count==0:
-                return False
-                
+                return False       
     return True
-
-if __name__=="__main__":
-    print(is_pangram('The quick, brown fox jumps over the lazy dog!'))

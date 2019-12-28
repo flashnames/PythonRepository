@@ -15,6 +15,3 @@ def DNA_strand(dna):
         if i==len(dna_1):
             dna_1=''.join(dna_1)
             return dna_1
-if __name__=='__main__':
-        Pr=DNA_strand("AAAA")
-        print(Pr)
