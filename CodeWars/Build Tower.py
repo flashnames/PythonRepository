@@ -3,6 +3,7 @@ def tower_builder(n_floors):
     List=[]
     Str='*'
     Num=0
+    Str1=' '
     if n_floors<=1:
         return List.append(Str)
     while True:

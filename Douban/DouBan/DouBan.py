@@ -109,30 +109,15 @@ class Douban(object):
         MaxNumber = Douban().MaxPage(Page)
         for index in range(MaxNumber):  # 外循环 用于控制翻页
             Page = Douban().GetPage(CommentNumber,headers,cookies)
-            List = Douban().GetData(
-                Page,
-                Element.get('Div'),
-                Element.get('Header')
-            )
+            List = Douban().GetData(Page,Element.get('Div'),Element.get('Header'))
             for Line in List['DivElement']:  # 获取div中数据
                 global j
-                Douban().GetTitle_N_Link(
-                    Line,
-                    Element.get('Title'),
-                    Element.get('Link'),
-                    j
-                )
+                Douban().GetTitle_N_Link(Line,Element.get('Title'),Element.get('Link'),j)
                 j += 1
                 time.sleep(30)
             for line in List['HeaderElement']:
                 global i
-                Douban().GetUserName(
-                    line,
-                    Element.get('UserId'),
-                    Element.get('Date'),
-                    Element.get('Score'),
-                    i
-                )
+                Douban().GetUserName(line,Element.get('UserId'),Element.get('Date'),Element.get('Score'),i)
                 i += 1
                 time.sleep(30)
             CommentNumber += 20
