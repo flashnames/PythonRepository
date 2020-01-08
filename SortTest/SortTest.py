@@ -35,5 +35,6 @@ if __name__=="__main__":
     for i in range(10):
         rannum=random.randint(0,100)
         TestList.append(rannum)
+    print(TestList)
     List=SortTest(TestList)
     print(List)
