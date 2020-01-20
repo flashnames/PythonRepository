@@ -8,5 +8,7 @@
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": false,
+    "python.pythonPath": "D:\\Program Files\\Python\\python.exe",
+    "python.testing.promptToConfigure": false
 }
